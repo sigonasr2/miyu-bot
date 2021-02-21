@@ -263,6 +263,7 @@ class Event(commands.Cog):
                       help='!cutoff 50')
     async def cutoff(self, ctx: commands.Context, tier: str = ''):
         def process_tier_arg(tier_arg):
+            tier_arg = tier_arg.lower()
             if tier_arg[0] == 't':
                 tier_arg = tier_arg[1:]
             if tier_arg[-1] == 'k':
@@ -312,7 +313,7 @@ class Event(commands.Cog):
                         value=str(data['points'])+average_rate,
                         inline=True)
         embed.add_field(name='Last Update',
-                        value=data['lastUpdate'],
+                        value=data['lastUpdate'] or 'None',
                         inline=True)
         embed.add_field(name='Rate',
                         value=f'{data["rate"]} pts/hr',
